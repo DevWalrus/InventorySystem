@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+    db:
+        image: postgres
+        restart: always
+        volumes:
+            - ./docker-data/db-data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: ${PW}
+            POSTGRES_USER: ${USER}
+            POSTGRES_DB: ${DB}
+        ports:
+            - 5432:5432
+    adminer:
+        depends_on: 
+            - db
+        image: adminer
+        restart: always
+        ports:
+            - 8090:8080
