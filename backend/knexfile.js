@@ -2,15 +2,33 @@ require('dotenv').config();
 
 module.exports = {
 
-  development: {
-    client: 'pg',
-    connection: {
-      database: process.env.DB,
-      user: process.env.USER,
-      password: process.env.PW
+    development: {
+        client: 'pg',
+        connection: {
+        database: process.env.POSTGRES_DB,
+        user: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD
+        },
+        migrations: {
+            directory: './db/migrations',
+        },
+        seeds: {
+            directory: './db/seeds',
+        },
     },
-    migrations: {
-        directory: './db/migrations',
+    test: {
+        debug: true,
+        client: 'pg',
+        connection: {
+        database: process.env.POSTGRES_TEST_DB,
+        user: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD
+        },
+        migrations: {
+            directory: './db/migrations',
+        },
+        seeds: {
+            directory: './db/seeds',
+        },
     },
-  },
 };
